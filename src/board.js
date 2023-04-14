@@ -3,6 +3,7 @@ class Board {
     this.player1 = undefined;
     this.player2 = undefined;
     this.currentPlayerTurn = 1;
+    this.gameFinished = false;
 
     this.screen = [
       ['', '', ''],
@@ -20,10 +21,11 @@ class Board {
         const test = document.getElementById(`${x}_${y}`);
 
         test.onclick = () => {
-          console.log(test.id);
           const coordX = test.id[0];
           const coordY = test.id[2];
-          this.registerMove(coordX, coordY);
+          if (!this.gameFinished) {
+            this.registerMove(coordX, coordY);
+          }
         };
       }
     }
@@ -31,19 +33,22 @@ class Board {
 
   registerMove(x, y) {
     if (x >= 0 && x <= 2 && y >= 0 && y <= 2) {
-      const test = document.getElementById(`${x}_${y}`);
+      const clickedBox = document.getElementById(`${x}_${y}`);
+
       if (this.currentPlayerTurn === 1) {
         this.screen[y][x] = this.player1.symbol;
-        test.classList.add('x-box');
+        clickedBox.classList.add('x-box');
         this.currentPlayerTurn = 2;
       } else {
         this.screen[y][x] = this.player2.symbol;
-        test.classList.add('zero-box');
+        clickedBox.classList.add('zero-box');
         this.currentPlayerTurn = 1;
       }
 
-      if(this.didGameFinished('X') || this.didGameFinished('0')){
-alert('Se termino el juego');
+      if (this.didGameFinished('X') || this.didGameFinished('0')) {
+        this.gameFinished = true;
+        alert('Se termino el juego');
+        this.showWinner();
       }
     } else {
       alert('Invalid move!');
@@ -105,19 +110,12 @@ alert('Se termino el juego');
     return winnerPositions.some((w) => w);
   }
 
-  getWinner() {
-    if (this.didGameFinished(player1.symbol)) {
-      alert(`${player1.id}`);
+  showWinner() {
+    if (this.didGameFinished(this.player1.symbol)) {
+      alert(`${this.player1.id} won!!!!`);
     } else {
-      alert(`${player2.id}`);
+      alert(`${this.player2.id} won!!!!`);
     }
-  }
-
-  init() {
-    const test = document.getElementById('1_1');
-    test.onclick = () => {
-      console.log('Yo soy 1_1 y me hicieron click, k lo k');
-    };
   }
 
   reset() {
