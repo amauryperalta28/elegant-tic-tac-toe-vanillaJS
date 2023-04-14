@@ -4,23 +4,28 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./game.css">
+    <link rel="stylesheet" href="./game.css" />
+
+    <script src="/src/player.js"></script>
     <title>Document</title>
   </head>
   <body>
     <div class="board-background">
-        <div class="board-square">
-            <div class="box top-left-border-rounded empty-box"></div>
-            <div class="box empty-box"></div>
-            <div class="box top-right-border-rounded empty-box"></div>
-            <div class="box empty-box"></div>
-            <div class="box empty-box"></div>
-            <div class="box empty-box"></div>
-            <div class="box bottom-left-border-rounded empty-box"></div>
-            <div class="box empty-box"></div>
-            <div class="box bottom-right-border-rounded empty-box"></div>
-        </div>
+      <div class="board-square">
+        <div id="0_0" class="box top-left-border-rounded empty-box"></div>
+        <div id="1_0" class="box empty-box"></div>
+        <div id="2_0" class="box top-right-border-rounded empty-box"></div>
+
+        <div id="0_1" class="box empty-box"></div>
+        <div id="1_1" class="box empty-box"></div>
+        <div id="2_1" class="box empty-box"></div>
+        
+        <div id="0_2" class="box bottom-left-border-rounded empty-box"></div>
+        <div id="1_2" class="box empty-box"></div>
+        <div id="2_2" class="box bottom-right-border-rounded empty-box"></div>
+      </div>
     </div>
 
+    <script src="/src/board.js"></script>
   </body>
 </html>

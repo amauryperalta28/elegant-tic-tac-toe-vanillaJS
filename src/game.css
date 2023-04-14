@@ -25,16 +25,6 @@ body {
     gap: 30px;
 }
 
-/* 
-.box {
-    border: 1px solid white; 
-    background-image: url('../assets/blank.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-} 
-
-*/
-
 .empty-box {
     background-image: url("../assets/blank.png");
     background-repeat: no-repeat;
