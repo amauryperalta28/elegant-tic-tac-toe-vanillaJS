@@ -32,14 +32,33 @@ class Board {
     }
   }
 
+  cleanBoard() {
+    for (let x = 0; x <= 2; x++) {
+      for (let y = 0; y <= 2; y++) {
+        const boardBox = document.getElementById(`${x}_${y}`);
+
+      }
+    }
+  }
+
   checkWinner() {
     setTimeout(() => {
       if (this.didGameFinished('X') || this.didGameFinished('0')) {
         this.gameFinished = true;
 
         this.showWinner();
+
+        if (confirm('Le gustaria jugar otra partida')) {
+          this.restartGame();
+        } else{
+          location.href="/src"
+        }
       }
     }, 10);
+  }
+
+  restartGame(){
+    location.reload();
   }
 
   registerMove(x, y) {
