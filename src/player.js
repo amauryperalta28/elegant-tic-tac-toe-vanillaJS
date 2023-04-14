@@ -1,15 +1,14 @@
-
 class Player {
   constructor(id, symbol) {
     this.id = id;
     this.symbol = symbol;
+  }
 
-    this.getId = function () {
-      return this.id;
-    };
+  getId() {
+    return this.id;
+  }
 
-    this.getSymbol = function () {
-      return this.symbol;
-    };
+  getSymbol() {
+    return this.symbol;
   }
 }

@@ -65,29 +65,29 @@ class Board {
   didGameFinished(symbol) {
     const topRow =
       this.screen[0][0] === symbol &&
-      this.screen[1][0] === symbol &&
-      this.screen[2][0] === symbol;
-    const middleRow =
       this.screen[0][1] === symbol &&
+      this.screen[0][2] === symbol;
+    const middleRow =
+      this.screen[1][0] === symbol &&
       this.screen[1][1] === symbol &&
-      this.screen[2][1] === symbol;
+      this.screen[1][2] === symbol;
     const bottomRow =
       this.screen[2][0] === symbol &&
       this.screen[2][1] === symbol &&
       this.screen[2][2] === symbol;
 
     const leftColumn =
-      this.screen[0][0] === symbol &&
-      this.screen[1][0] === symbol &&
-      this.screen[2][0] === symbol;
+      this.screen[0][2] === symbol &&
+      this.screen[1][2] === symbol &&
+      this.screen[2][2] === symbol;
     const middleColumn =
       this.screen[0][1] === symbol &&
       this.screen[1][1] === symbol &&
       this.screen[2][1] === symbol;
     const rightColumn =
-      this.screen[2][0] === symbol &&
-      this.screen[2][1] === symbol &&
-      this.screen[2][2] === symbol;
+      this.screen[0][0] === symbol &&
+      this.screen[1][0] === symbol &&
+      this.screen[2][0] === symbol;
 
     const leftRightDiagonal =
       this.screen[0][0] === symbol &&
