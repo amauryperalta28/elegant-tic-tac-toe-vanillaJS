@@ -11,11 +11,11 @@ class Board {
       ['', '', ''],
     ];
 
-    this.boundWithGameEvents();
-    this.start();
+    this.boundBoxesWithEvents();
+    this.initGame();
   }
 
-  boundWithGameEvents() {
+  boundBoxesWithEvents() {
     for (let x = 0; x <= 2; x++) {
       for (let y = 0; y <= 2; y++) {
         const test = document.getElementById(`${x}_${y}`);
@@ -47,7 +47,7 @@ class Board {
 
       if (this.didGameFinished('X') || this.didGameFinished('0')) {
         this.gameFinished = true;
-        alert('Se termino el juego');
+        // alert('Se termino el juego');
         this.showWinner();
       }
     } else {
@@ -55,7 +55,7 @@ class Board {
     }
   }
 
-  start() {
+  initGame() {
     this.player1 = new Player('Player1', 'X');
     this.player2 = new Player('Player1', '0');
 

@@ -1,13 +1,15 @@
 
-function Player(id, symbol) {
-  this.id = id;
-  this.symbol = symbol;
+class Player {
+  constructor(id, symbol) {
+    this.id = id;
+    this.symbol = symbol;
 
-  this.getId= function(){
-    return this.id;
-  }
+    this.getId = function () {
+      return this.id;
+    };
 
-  this.getSymbol = function(){
-    return this.symbol;
+    this.getSymbol = function () {
+      return this.symbol;
+    };
   }
 }
