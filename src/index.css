@@ -1,0 +1,28 @@
+body{
+    height: 100vh;
+    width: 100vw;
+    background-image: url("../assets/initial-screen-background.png");
+    background-repeat:no-repeat;
+    background-position: center;
+    overflow: hidden;
+    background-color: #201f1b;
+}
+
+.start-game{
+    position: fixed;
+    bottom: 33px;
+    left: 45vw;
+    color: white;
+    background-color: #c1ab7c;
+    width: 143px;
+    height: 39px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+a.start-game {
+    text-decoration: none;
+} 
+

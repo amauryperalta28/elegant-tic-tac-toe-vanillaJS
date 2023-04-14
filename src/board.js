@@ -18,17 +18,28 @@ class Board {
   boundBoxesWithEvents() {
     for (let x = 0; x <= 2; x++) {
       for (let y = 0; y <= 2; y++) {
-        const test = document.getElementById(`${x}_${y}`);
+        const boardBox = document.getElementById(`${x}_${y}`);
 
-        test.onclick = () => {
-          const coordX = test.id[0];
-          const coordY = test.id[2];
+        boardBox.onclick = () => {
+          const coordX = boardBox.id[0];
+          const coordY = boardBox.id[2];
           if (!this.gameFinished) {
             this.registerMove(coordX, coordY);
+            this.checkWinner();
           }
         };
       }
     }
+  }
+
+  checkWinner() {
+    setTimeout(() => {
+      if (this.didGameFinished('X') || this.didGameFinished('0')) {
+        this.gameFinished = true;
+
+        this.showWinner();
+      }
+    }, 10);
   }
 
   registerMove(x, y) {
@@ -44,20 +55,14 @@ class Board {
         clickedBox.classList.add('zero-box');
         this.currentPlayerTurn = 1;
       }
-
-      if (this.didGameFinished('X') || this.didGameFinished('0')) {
-        this.gameFinished = true;
-        // alert('Se termino el juego');
-        this.showWinner();
-      }
     } else {
-      alert('Invalid move!');
+      alert('Movimiento inválido!');
     }
   }
 
   initGame() {
-    this.player1 = new Player('Player1', 'X');
-    this.player2 = new Player('Player1', '0');
+    this.player1 = new Player('Jugador 1', 'X');
+    this.player2 = new Player('Jugador 2', '0');
 
     this.reset();
   }
@@ -112,9 +117,9 @@ class Board {
 
   showWinner() {
     if (this.didGameFinished(this.player1.symbol)) {
-      alert(`${this.player1.id} won!!!!`);
+      alert(`${this.player1.id} ganó!!!!`);
     } else {
-      alert(`${this.player2.id} won!!!!`);
+      alert(`${this.player2.id} ganó!!!!`);
     }
   }
 
