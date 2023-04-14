@@ -15,14 +15,14 @@ body {
 }
 
 .board-square {
-    width: 622px;
-    height: 650px;
-    border-radius: 18px;
+    width: 38.875rem;
+    height: 40.625rem;
+    border-radius: 1.125rem;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
-    margin-top: 158px;
-    gap: 30px;
+    margin-top: 9.875rem;
+    gap: 1.875rem;
 }
 
 .empty-box {
@@ -45,18 +45,18 @@ body {
 
 .top-left-border-rounded {
 
-    border-top-left-radius: 20px;
+    border-top-left-radius: 1.25rem;
 }
 
 .top-right-border-rounded {
 
-    border-top-right-radius: 20px;
+    border-top-right-radius: 1.25rem;
 }
 
 .bottom-left-border-rounded {
-    border-bottom-left-radius: 20px;
+    border-bottom-left-radius: 1.25rem;
 }
 
 .bottom-right-border-rounded {
-    border-bottom-right-radius: 20px;
+    border-bottom-right-radius: 1.25rem;
 }

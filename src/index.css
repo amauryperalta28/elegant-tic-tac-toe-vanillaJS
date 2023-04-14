@@ -10,14 +10,14 @@ body{
 
 .start-game{
     position: fixed;
-    bottom: 33px;
+    bottom: 2.063rem;
     left: 45vw;
     color: #00000091;
     font-weight: bold;
-    font-size: 25px;
+    font-size: 1.563rem;
     background-color: #c1ab7c;
-    width: 141px;
-    height: 35px;
+    width: 8.813rem;
+    height: 2.188;
     text-align: center;
     display: flex;
     justify-content: center;
