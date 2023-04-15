@@ -115,9 +115,9 @@ class Game {
       this.board[2][2].content === symbol;
 
     const leftColumn =
-      this.board[0][2].content === symbol &&
-      this.board[1][2].content === symbol &&
-      this.board[2][2].content === symbol;
+      this.board[0][0].content === symbol &&
+      this.board[1][0].content === symbol &&
+      this.board[2][0].content === symbol;
     const middleColumn =
       this.board[0][1].content === symbol &&
       this.board[1][1].content === symbol &&
