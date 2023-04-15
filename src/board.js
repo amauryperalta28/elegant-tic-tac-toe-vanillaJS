@@ -1,16 +1,17 @@
-class Board {
+class Game {
   constructor() {
     this.player1 = undefined;
     this.player2 = undefined;
     this.currentPlayerTurn = 1;
     this.gameFinished = false;
 
-    this.screen = [
+    this.board = [
       ['', '', ''],
       ['', '', ''],
       ['', '', ''],
     ];
 
+    this.initializeBoard();
     this.boundBoxesWithEvents();
     this.initGame();
   }
@@ -32,46 +33,49 @@ class Board {
     }
   }
 
-  cleanBoard() {
+  initializeBoard() {
     for (let x = 0; x <= 2; x++) {
       for (let y = 0; y <= 2; y++) {
-        const boardBox = document.getElementById(`${x}_${y}`);
-
+        this.board[y][x] = new Box(y, x);
       }
     }
   }
 
   checkWinner() {
-    setTimeout(() => {
+    // setTimeout(() => {
       if (this.didGameFinished('X') || this.didGameFinished('0')) {
-        this.gameFinished = true;
-
+        this.setGameAsFinished();
         this.showWinner();
 
         if (confirm('Le gustaria jugar otra partida')) {
           this.restartGame();
-        } else{
-          location.href="/src"
+        } else {
+          this.goToStartScreen();
         }
       }
-    }, 10);
+    // }, 10);
   }
 
-  restartGame(){
+  goToStartScreen() {
+    location.href = '/src';
+  }
+
+  setGameAsFinished() {
+    this.gameFinished = true;
+  }
+
+  restartGame() {
     location.reload();
   }
 
   registerMove(x, y) {
-    if (x >= 0 && x <= 2 && y >= 0 && y <= 2) {
-      const clickedBox = document.getElementById(`${x}_${y}`);
-
+    if (this.isValidMove(x, y)) {
       if (this.currentPlayerTurn === 1) {
-        this.screen[y][x] = this.player1.symbol;
-        clickedBox.classList.add('x-box');
+        this.registerPlayer1Move(x, y);
+
         this.currentPlayerTurn = 2;
       } else {
-        this.screen[y][x] = this.player2.symbol;
-        clickedBox.classList.add('zero-box');
+        this.registerPlayer2Move(x, y);
         this.currentPlayerTurn = 1;
       }
     } else {
@@ -79,46 +83,58 @@ class Board {
     }
   }
 
+  registerPlayer1Move(x, y) {
+    this.board[y][x].setX();
+  }
+
+  registerPlayer2Move(x, y) {
+    this.board[y][x].setZero();
+  }
+
+  isValidMove(x, y) {
+    return x >= 0 && x <= 2 && y >= 0 && y <= 2;
+  }
+
   initGame() {
     this.player1 = new Player('Jugador 1', 'X');
     this.player2 = new Player('Jugador 2', '0');
-
-    this.reset();
   }
 
   didGameFinished(symbol) {
     const topRow =
-      this.screen[0][0] === symbol &&
-      this.screen[0][1] === symbol &&
-      this.screen[0][2] === symbol;
+      this.board[0][0].content === symbol &&
+      this.board[0][1].content === symbol &&
+      this.board[0][2].content === symbol;
     const middleRow =
-      this.screen[1][0] === symbol &&
-      this.screen[1][1] === symbol &&
-      this.screen[1][2] === symbol;
+      this.board[1][0].content === symbol &&
+      this.board[1][1].content === symbol &&
+      this.board[1][2].content === symbol;
     const bottomRow =
-      this.screen[2][0] === symbol &&
-      this.screen[2][1] === symbol &&
-      this.screen[2][2] === symbol;
+      this.board[2][0].content === symbol &&
+      this.board[2][1].content === symbol &&
+      this.board[2][2].content === symbol;
 
     const leftColumn =
-      this.screen[0][2] === symbol &&
-      this.screen[1][2] === symbol &&
-      this.screen[2][2] === symbol;
+      this.board[0][2].content === symbol &&
+      this.board[1][2].content === symbol &&
+      this.board[2][2].content === symbol;
     const middleColumn =
-      this.screen[0][1] === symbol &&
-      this.screen[1][1] === symbol &&
-      this.screen[2][1] === symbol;
+      this.board[0][1].content === symbol &&
+      this.board[1][1].content === symbol &&
+      this.board[2][1].content === symbol;
     const rightColumn =
-      this.screen[0][0] === symbol &&
-      this.screen[1][0] === symbol &&
-      this.screen[2][0] === symbol;
+      this.board[0][0].content.content === symbol &&
+      this.board[1][0].content.content === symbol &&
+      this.board[2][0].content.content === symbol;
 
     const leftRightDiagonal =
-      this.screen[0][0] === symbol &&
-      (this.screen[1][1] === symbol) & (this.screen[2][2] === symbol);
+      this.board[0][0].content === symbol &&
+      (this.board[1][1].content === symbol) &
+        (this.board[2][2].content === symbol);
     const rightLeftDiagonal =
-      this.screen[2][0] === symbol &&
-      (this.screen[1][1] === symbol) & (this.screen[0][2] === symbol);
+      this.board[2][0].content === symbol &&
+      (this.board[1][1].content === symbol) &
+        (this.board[0][2].content === symbol);
 
     const winnerPositions = [
       topRow,
@@ -142,14 +158,6 @@ class Board {
     }
   }
 
-  reset() {
-    this.currentPlayerTurn = 1;
-    this.screen = [
-      ['', '', ''],
-      ['', '', ''],
-      ['', '', ''],
-    ];
-  }
 }
 
-var myBoard = new Board();
+var myGame = new Game();
