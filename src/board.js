@@ -42,7 +42,7 @@ class Game {
   }
 
   checkWinner() {
-    // setTimeout(() => {
+    setTimeout(() => {
       if (this.didGameFinished('X') || this.didGameFinished('0')) {
         this.setGameAsFinished();
         this.showWinner();
@@ -53,7 +53,7 @@ class Game {
           this.goToStartScreen();
         }
       }
-    // }, 10);
+    }, 10);
   }
 
   goToStartScreen() {
