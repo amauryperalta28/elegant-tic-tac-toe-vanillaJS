@@ -130,9 +130,9 @@ class Game {
       this.board[1][1].content === playerSymbol &&
       this.board[2][1].content === playerSymbol;
     const rightColumn =
-      this.board[0][0].content.content === playerSymbol &&
-      this.board[1][0].content.content === playerSymbol &&
-      this.board[2][0].content.content === playerSymbol;
+      this.board[0][2].content === playerSymbol &&
+      this.board[1][2].content === playerSymbol &&
+      this.board[2][2].content === playerSymbol;
 
     const leftRightDiagonal =
       this.board[0][0].content === playerSymbol &&
