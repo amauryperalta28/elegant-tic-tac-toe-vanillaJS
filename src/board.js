@@ -4,37 +4,24 @@ class Game {
     this.player2 = undefined;
     this.currentPlayerTurn = 1;
     this.gameFinished = false;
-
-    this.board = [
-      ['', '', ''],
-      ['', '', ''],
-      ['', '', ''],
-    ];
-
+    
     this.initializeBoard();
-    this.boundBoxesWithEvents();
-    this.initGame();
+    this.startGame();
   }
 
-  boundBoxesWithEvents() {
+  initializeBoard() {
+    this.board = [[], [], []];
+
     for (let x = 0; x <= 2; x++) {
       for (let y = 0; y <= 2; y++) {
-        const boardBox = document.getElementById(`${x}_${y}`);
-
-        boardBox.onclick = () => {
+        const onClick = () => {
           if (!this.gameFinished) {
             this.registerMove(x, y);
             this.checkWinner();
           }
         };
-      }
-    }
-  }
 
-  initializeBoard() {
-    for (let x = 0; x <= 2; x++) {
-      for (let y = 0; y <= 2; y++) {
-        this.board[y][x] = new Box(y, x);
+        this.board[y][x] = new Box(y, x, onClick);
       }
     }
   }
@@ -95,7 +82,7 @@ class Game {
     return x >= 0 && x <= 2 && y >= 0 && y <= 2;
   }
 
-  initGame() {
+  startGame() {
     this.player1 = new Player('Jugador 1', 'X');
     this.player2 = new Player('Jugador 2', '0');
   }
