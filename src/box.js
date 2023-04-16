@@ -1,9 +1,10 @@
 class Box {
-  constructor(y, x) {
+  constructor(y, x, onClick) {
     this.y = y;
     this.x = x;
     this.content = '';
     this.boardBox = document.getElementById(`${this.x}_${this.y}`);
+    this.boardBox.onclick = onClick;
   }
 
   setX() {
