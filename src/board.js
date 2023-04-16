@@ -22,10 +22,8 @@ class Game {
         const boardBox = document.getElementById(`${x}_${y}`);
 
         boardBox.onclick = () => {
-          const coordX = boardBox.id[0];
-          const coordY = boardBox.id[2];
           if (!this.gameFinished) {
-            this.registerMove(coordX, coordY);
+            this.registerMove(x, y);
             this.checkWinner();
           }
         };
@@ -43,8 +41,9 @@ class Game {
 
   checkWinner() {
     setTimeout(() => {
-      if (this.didGameFinished('X') || this.didGameFinished('0')) {
+      if (this.didGameFinished()) {
         this.setGameAsFinished();
+
         this.showWinner();
 
         if (confirm('Le gustaria jugar otra partida')) {
@@ -69,17 +68,18 @@ class Game {
   }
 
   registerMove(x, y) {
-    if (this.isValidMove(x, y)) {
-      if (this.currentPlayerTurn === 1) {
-        this.registerPlayer1Move(x, y);
-
-        this.currentPlayerTurn = 2;
-      } else {
-        this.registerPlayer2Move(x, y);
-        this.currentPlayerTurn = 1;
-      }
-    } else {
+    if (!this.isValidMove(x, y)) {
       alert('Movimiento inválido!');
+      return;
+    }
+
+    if (this.currentPlayerTurn === 1) {
+      this.registerPlayer1Move(x, y);
+
+      this.currentPlayerTurn = 2;
+    } else {
+      this.registerPlayer2Move(x, y);
+      this.currentPlayerTurn = 1;
     }
   }
 
@@ -100,41 +100,48 @@ class Game {
     this.player2 = new Player('Jugador 2', '0');
   }
 
-  didGameFinished(symbol) {
+  didGameFinished() {
+    return (
+      this.didThisPlayerWon(this.player1.symbol) ||
+      this.didThisPlayerWon(this.player2.symbol)
+    );
+  }
+
+  didThisPlayerWon(playerSymbol) {
     const topRow =
-      this.board[0][0].content === symbol &&
-      this.board[0][1].content === symbol &&
-      this.board[0][2].content === symbol;
+      this.board[0][0].content === playerSymbol &&
+      this.board[0][1].content === playerSymbol &&
+      this.board[0][2].content === playerSymbol;
     const middleRow =
-      this.board[1][0].content === symbol &&
-      this.board[1][1].content === symbol &&
-      this.board[1][2].content === symbol;
+      this.board[1][0].content === playerSymbol &&
+      this.board[1][1].content === playerSymbol &&
+      this.board[1][2].content === playerSymbol;
     const bottomRow =
-      this.board[2][0].content === symbol &&
-      this.board[2][1].content === symbol &&
-      this.board[2][2].content === symbol;
+      this.board[2][0].content === playerSymbol &&
+      this.board[2][1].content === playerSymbol &&
+      this.board[2][2].content === playerSymbol;
 
     const leftColumn =
-      this.board[0][0].content === symbol &&
-      this.board[1][0].content === symbol &&
-      this.board[2][0].content === symbol;
+      this.board[0][0].content === playerSymbol &&
+      this.board[1][0].content === playerSymbol &&
+      this.board[2][0].content === playerSymbol;
     const middleColumn =
-      this.board[0][1].content === symbol &&
-      this.board[1][1].content === symbol &&
-      this.board[2][1].content === symbol;
+      this.board[0][1].content === playerSymbol &&
+      this.board[1][1].content === playerSymbol &&
+      this.board[2][1].content === playerSymbol;
     const rightColumn =
-      this.board[0][0].content.content === symbol &&
-      this.board[1][0].content.content === symbol &&
-      this.board[2][0].content.content === symbol;
+      this.board[0][0].content.content === playerSymbol &&
+      this.board[1][0].content.content === playerSymbol &&
+      this.board[2][0].content.content === playerSymbol;
 
     const leftRightDiagonal =
-      this.board[0][0].content === symbol &&
-      (this.board[1][1].content === symbol) &
-        (this.board[2][2].content === symbol);
+      this.board[0][0].content === playerSymbol &&
+      (this.board[1][1].content === playerSymbol) &
+        (this.board[2][2].content === playerSymbol);
     const rightLeftDiagonal =
-      this.board[2][0].content === symbol &&
-      (this.board[1][1].content === symbol) &
-        (this.board[0][2].content === symbol);
+      this.board[2][0].content === playerSymbol &&
+      (this.board[1][1].content === playerSymbol) &
+        (this.board[0][2].content === playerSymbol);
 
     const winnerPositions = [
       topRow,
@@ -151,13 +158,12 @@ class Game {
   }
 
   showWinner() {
-    if (this.didGameFinished(this.player1.symbol)) {
+    if (this.didThisPlayerWon(this.player1.symbol)) {
       alert(`${this.player1.id} ganó!!!!`);
     } else {
       alert(`${this.player2.id} ganó!!!!`);
     }
   }
-
 }
 
 var myGame = new Game();
