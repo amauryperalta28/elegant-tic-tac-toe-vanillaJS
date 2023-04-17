@@ -43,7 +43,7 @@ class Game {
   }
 
   goToStartScreen() {
-    location.href = '/src';
+    location.href = '/';
   }
 
   setGameAsFinished() {
