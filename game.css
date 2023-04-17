@@ -6,7 +6,7 @@ body {
 .board-background {
     height: 100vh;
     width: 100vw;
-    background-image: url("../assets/game-background.png");
+    background-image: url("../images/game-background.png");
     background-repeat: no-repeat;
     background-position: center;
     overflow: hidden;
@@ -26,19 +26,19 @@ body {
 }
 
 .empty-box {
-    background-image: url("./assets/empty.png");
+    background-image: url("./images/empty.png");
     background-repeat: no-repeat;
     background-size: cover;
 }
 
 .zero-box {
-    background-image: url("./assets/cero.png");
+    background-image: url("./images/cero.png");
     background-repeat: no-repeat;
     background-size: cover;
 }
 
 .x-box {
-    background-image: url("./assets/cross.png");
+    background-image: url("./images/cross.png");
     background-repeat: no-repeat;
     background-size: cover;
 }
