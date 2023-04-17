@@ -28,3 +28,11 @@ a.start-game {
     text-decoration: none;
 } 
 
+.game-title{
+    color: #cdb792;
+    width: 100%;
+    text-align: center;
+    padding-top: 110px;
+    font-size: 39px;
+}
+
