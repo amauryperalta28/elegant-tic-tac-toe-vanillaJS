@@ -26,19 +26,19 @@ body {
 }
 
 .empty-box {
-    background-image: url("../assets/empty.png");
+    background-image: url("./assets/empty.png");
     background-repeat: no-repeat;
     background-size: cover;
 }
 
 .zero-box {
-    background-image: url("../assets/cero.png");
+    background-image: url("./assets/cero.png");
     background-repeat: no-repeat;
     background-size: cover;
 }
 
 .x-box {
-    background-image: url("../assets/cross.png");
+    background-image: url("./assets/cross.png");
     background-repeat: no-repeat;
     background-size: cover;
 }
