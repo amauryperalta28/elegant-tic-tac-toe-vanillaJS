@@ -6,7 +6,7 @@ body {
 .board-background {
     height: 100vh;
     width: 100vw;
-    background-image: url("../images/game-background.png");
+    background-image: url("./images/game-background.png");
     background-repeat: no-repeat;
     background-position: center;
     overflow: hidden;
