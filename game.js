@@ -4,7 +4,7 @@ class Game {
     this.player2 = undefined;
     this.currentPlayerTurn = 1;
     this.gameFinished = false;
-    
+
     this.initializeBoard();
     this.startGame();
   }
@@ -63,19 +63,25 @@ class Game {
     if (this.currentPlayerTurn === 1) {
       this.registerPlayer1Move(x, y);
 
-      this.currentPlayerTurn = 2;
     } else {
       this.registerPlayer2Move(x, y);
-      this.currentPlayerTurn = 1;
+
     }
   }
 
   registerPlayer1Move(x, y) {
-    this.board[y][x].setX();
+    if (this.board[y][x].content.length === 0) {
+      this.board[y][x].setX();
+      
+      this.currentPlayerTurn = 2;
+    }
   }
 
   registerPlayer2Move(x, y) {
-    this.board[y][x].setZero();
+    if (this.board[y][x].content.length === 0) {
+      this.board[y][x].setZero();
+      this.currentPlayerTurn = 1;
+    }
   }
 
   isValidMove(x, y) {
