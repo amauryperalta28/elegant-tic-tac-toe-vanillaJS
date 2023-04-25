@@ -24,6 +24,7 @@ class Game {
         this.board[y][x] = new Box(y, x, onClick);
       }
     }
+
   }
 
   checkWinner() {
@@ -50,8 +51,18 @@ class Game {
     this.gameFinished = true;
   }
 
+  cleanBoard() {
+    for (let x = 0; x <= 2; x++) {
+      for (let y = 0; y <= 2; y++) {
+        this.board[y][x].clean();
+      }
+    }
+
+  }
+
   restartGame() {
-    location.reload();
+    this.gameFinished = false;
+    this.cleanBoard();
   }
 
   registerMove(x, y) {

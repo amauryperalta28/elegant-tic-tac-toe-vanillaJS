@@ -21,7 +21,7 @@ body {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
-    margin-top: 9.875rem;
+    margin-top: 10.875rem;
     gap: 1.875rem;
 }
 
